@@ -8,7 +8,7 @@ N = 10
 size = (280,160, 3)
 vector_size = 256
 
-svm = pickle.load(open('./SVM_10_2.pkl', 'rb'))
+svm = pickle.load(open('./RandomForestClassifier.pkl', 'rb'))
 
 class LocalBinaryPatterns:
   def __init__(self, numPoints, radius):
