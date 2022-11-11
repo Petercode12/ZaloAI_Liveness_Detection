@@ -7,6 +7,7 @@ from tqdm import tqdm
 import wget
 import zipfile
 from skimage import feature
+from utils import LocalBinaryPatterns, N, size
 
 if not os.path.exists('train'):
   print("DOWNLOADING DATA:")
@@ -21,9 +22,7 @@ else:
 data_list = pd.read_csv('./train/label.csv')
 data_list = [ (x,y) for (x,y) in zip(data_list['fname'],data_list['liveness_score'])]
 
-N = 10
-size = (280,160, 3)
-vector_size = 256
+
 
 print("\nPREPROCESSING DATA:")
 X_=[]
@@ -46,7 +45,7 @@ for f, label in tqdm(data_list):
     count += 1
 X_ = np.array(X_).astype('uint8')
 y_ = np.array(y_)
-with open(f'./train/data_pickle_10_280_160_3.pkl', 'wb') as file:
+with open(f'./train/data_pickle_{N}_280_160_3.pkl', 'wb') as file:
   pickle.dump((X_, y_), file)
 
 class LocalBinaryPatterns:
@@ -89,5 +88,5 @@ for idx in tqdm(range(len(X_))):
 X = np.array(X)
 y = np.array(y)
 print(X.shape, y.shape)
-with open(f'./train/data_pickle_10_280_160_3_phase_2.pkl', 'wb') as file:
+with open(f'./train/data_pickle_{N}_280_160_3_phase_2.pkl', 'wb') as file:
   pickle.dump((X, y), file)

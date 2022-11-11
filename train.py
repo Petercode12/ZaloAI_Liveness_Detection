@@ -16,7 +16,7 @@ def calculate_eer(y_true, y_score):
     eer = brentq(lambda x : 1. - x - interp1d(fpr, tpr)(x), 0., 1.)
     return eer
 
-with open(f'./train/data_pickle_10_280_160_3_phase_2.pkl', 'rb') as file:
+with open(f'./train/data_pickle_1_280_160_3_phase_2.pkl', 'rb') as file:
   X, y = pickle.load(file)
 
 data_train, data_test, labels_train, labels_test = train_test_split(X, y, test_size=0.2, random_state=42)

@@ -4,9 +4,8 @@ from sklearn.svm import *
 import numpy as np
 from skimage import feature
 
-N = 10
-size = (280,160, 3)
-vector_size = 256
+N = 1
+size = (280,160)
 
 svm = pickle.load(open('./RandomForestClassifier.pkl', 'rb'))
 
