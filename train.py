@@ -7,6 +7,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import make_scorer, roc_curve
 from scipy.optimize import brentq
 from scipy.interpolate import interp1d
+from utils import *
 
 def calculate_eer(y_true, y_score):
     '''
@@ -16,15 +17,14 @@ def calculate_eer(y_true, y_score):
     eer = brentq(lambda x : 1. - x - interp1d(fpr, tpr)(x), 0., 1.)
     return eer
 
-with open(f'./train/data_pickle_1_280_160_3_phase_2.pkl', 'rb') as file:
+with open(f'./train/data_pickle_{N}_{size[0]}_{size[1]}_3_phase_2.pkl', 'rb') as file:
   X, y = pickle.load(file)
 
-data_train, data_test, labels_train, labels_test = train_test_split(X, y, test_size=0.2, random_state=42)
+data_train, data_test, labels_train, labels_test = train_test_split(X, y, test_size=0.1, random_state=42)
 
 from sklearn.ensemble import RandomForestClassifier
 
-model = RandomForestClassifier(n_estimators=100, random_state=4)
-
+model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(data_train, labels_train)
 
 from sklearn.metrics import accuracy_score

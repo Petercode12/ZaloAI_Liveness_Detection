@@ -8,6 +8,7 @@ import wget
 import zipfile
 from skimage import feature
 from utils import LocalBinaryPatterns, N, size
+import threading
 
 if not os.path.exists('train'):
   print("DOWNLOADING DATA:")
@@ -45,7 +46,7 @@ for f, label in tqdm(data_list):
     count += 1
 X_ = np.array(X_).astype('uint8')
 y_ = np.array(y_)
-with open(f'./train/data_pickle_{N}_280_160_3.pkl', 'wb') as file:
+with open(f'./train/data_pickle_{N}_{size[0]}_{size[1]}_3.pkl', 'wb') as file:
   pickle.dump((X_, y_), file)
 
 class LocalBinaryPatterns:
@@ -88,5 +89,5 @@ for idx in tqdm(range(len(X_))):
 X = np.array(X)
 y = np.array(y)
 print(X.shape, y.shape)
-with open(f'./train/data_pickle_{N}_280_160_3_phase_2.pkl', 'wb') as file:
+with open(f'./train/data_pickle_{N}_{size[0]}_{size[1]}_3_phase_2.pkl', 'wb') as file:
   pickle.dump((X, y), file)

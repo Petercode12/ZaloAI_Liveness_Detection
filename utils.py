@@ -4,10 +4,13 @@ from sklearn.svm import *
 import numpy as np
 from skimage import feature
 
-N = 1
+N = 10
 size = (280,160)
 
-svm = pickle.load(open('./RandomForestClassifier.pkl', 'rb'))
+try:
+  svm = pickle.load(open('./RandomForestClassifier.pkl', 'rb'))  
+except:
+  pass
 
 class LocalBinaryPatterns:
   def __init__(self, numPoints, radius):
@@ -42,4 +45,5 @@ def file2class(filename):
   desc = LocalBinaryPatterns(98, 2)
   X = [desc.describe(i) for i in X.astype('uint8')]
   X = np.array(X).reshape((1,-1))
-  return svm.predict(X)[0]
+  # return svm.predict(X)[0]
+  return svm.predict_proba(X)[0][1]
