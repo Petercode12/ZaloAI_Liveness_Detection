@@ -46,4 +46,4 @@ def file2class(filename):
   X = [desc.describe(i) for i in X.astype('uint8')]
   X = np.array(X).reshape((1,-1))
   # return svm.predict(X)[0]
-  return svm.predict_proba(X)[0][1]
+  return svm.predict_proba(X)[0].argmax()
