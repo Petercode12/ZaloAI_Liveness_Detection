@@ -4,10 +4,13 @@ from sklearn.svm import *
 import numpy as np
 from skimage import feature
 
-N = 1
+N = 10 # Lấy N frames dàn trải cả vid
 size = (280,160)
 
-svm = pickle.load(open('./RandomForestClassifier.pkl', 'rb'))
+try:
+  svm = pickle.load(open('./MyClassifier.pkl', 'rb'))
+except:
+  print()
 
 class LocalBinaryPatterns:
   def __init__(self, numPoints, radius):
