@@ -8,7 +8,7 @@ N = 10 # Lấy N frames dàn trải cả vid
 size = (280,160)
 
 try:
-  svm = pickle.load(open('./MyClassifier.pkl', 'rb'))
+  model = pickle.load(open('./MyClassifier.pkl', 'rb'))
 except:
   print()
 
@@ -45,4 +45,4 @@ def file2class(filename):
   desc = LocalBinaryPatterns(98, 2)
   X = [desc.describe(i) for i in X.astype('uint8')]
   X = np.array(X).reshape((1,-1))
-  return svm.predict(X)[0]
+  return model.predict(X)[0]
