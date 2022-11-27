@@ -12,9 +12,8 @@ python preprocessdata.py
 python train.py
 ```
 
-- To see how to use our model, see `predict.py`, with input is the string to the video, and out is either 0 or 1.
+- To run our model:
 
 ```
-from utils import file2class
-result = file2class('pat/to/file/name')
+python predict.py
 ```
